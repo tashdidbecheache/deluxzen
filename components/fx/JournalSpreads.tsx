@@ -5,7 +5,7 @@ import type { Spread } from "@/lib/data";
 
 /**
  * Journal spread carousel: open double-page spreads in 3D; neighbours fold into stacks on each side.
- * Turns pages on its own on touch devices; drag, click, arrow keys or scroll (desktop) to browse.
+ * Turns pages on its own; drag, click, dots, arrow keys or a sideways swipe to browse.
  */
 
 const OPEN = 5, SIDE = 80, FOLD = 174;
@@ -67,7 +67,7 @@ export default function JournalSpreads({ spreads, height = "clamp(440px,64vh,680
   const pages = useRef<(HTMLDivElement | null)[]>([]);
   const width = useRef(0), pos = useRef(start), target = useRef(start);
   const tween = useRef<Tween | null>(null), raf = useRef(0), drag = useRef<Drag | null>(null);
-  const reducedRef = useRef(false), hovered = useRef(false);
+  const reducedRef = useRef(false);
 
   const paint = useCallback(() => {
     const w = width.current;
@@ -155,7 +155,7 @@ export default function JournalSpreads({ spreads, height = "clamp(440px,64vh,680
     };
   }, [paint]);
 
-  // Auto-turn on touch devices; pauses while hovered, dragged, off-screen or in a hidden tab.
+  // Auto-turns; pauses while hovered, dragged, off-screen or in a hidden tab.
   useEffect(() => {
     const root = rootRef.current;
     if (!autoPlay || reduced || n < 2 || !root) return;
@@ -164,9 +164,8 @@ export default function JournalSpreads({ spreads, height = "clamp(440px,64vh,680
       visible = e.isIntersecting;
     });
     io.observe(root);
-    const desk = window.matchMedia("(min-width: 881px) and (pointer: fine)");
     const id = window.setInterval(() => {
-      if (desk.matches || !visible || document.hidden || drag.current || hovered.current) return;
+      if (!visible || document.hidden || drag.current || root.matches(":hover")) return;
       go(target.current >= n - 1 ? 0 : target.current + 1);
     }, autoPlay);
     return () => {
@@ -198,59 +197,6 @@ export default function JournalSpreads({ spreads, height = "clamp(440px,64vh,680
     zone.addEventListener("wheel", onWheel, { passive: false });
     return () => zone.removeEventListener("wheel", onWheel);
   }, [go]);
-
-  // Desktop: when the section fills the screen, each scroll gesture turns one spread.
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root || n < 2) return;
-    const mq = window.matchMedia("(min-width: 881px) and (pointer: fine)");
-    const sec = root.closest("section");
-    let lastEv = 0, lastTurn = 0, engagedAt = 0;
-    const engaged = () => {
-      if (!mq.matches || !sec) return false;
-      return Math.abs(sec.getBoundingClientRect().top) <= 8;
-    };
-    const onScroll = () => {
-      if (!engaged()) engagedAt = 0;
-      else if (!engagedAt) engagedAt = performance.now();
-    };
-    const step = (dir: number, now: number, fresh: boolean) => {
-      if (!engaged()) return false;
-      if (!engagedAt) engagedAt = now;
-      const t = target.current, atEnd = dir > 0 ? t >= n - 1 : t <= 0;
-      if (atEnd) return !(fresh && now - lastTurn > 450 && now - engagedAt > 350);
-      if ((fresh || now - lastTurn > 750) && now - engagedAt > 350) {
-        lastTurn = now;
-        go(t + dir);
-      }
-      return true;
-    };
-    const onWheel = (e: WheelEvent) => {
-      if (e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX) || Math.abs(e.deltaY) < 2) return;
-      const now = performance.now(), fresh = now - lastEv > 200;
-      lastEv = now;
-      if (step(e.deltaY > 0 ? 1 : -1, now, fresh)) e.preventDefault();
-    };
-    const onKey = (e: KeyboardEvent) => {
-      const tg = (e.target as HTMLElement | null)?.tagName;
-      if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT" || e.altKey || e.ctrlKey || e.metaKey) return;
-      const down = e.key === "PageDown" || e.key === "ArrowDown" || (e.key === " " && !e.shiftKey);
-      const up = e.key === "PageUp" || e.key === "ArrowUp" || (e.key === " " && e.shiftKey);
-      if (!down && !up) return;
-      if (step(down ? 1 : -1, performance.now(), true)) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-      }
-    };
-    window.addEventListener("wheel", onWheel, { passive: false, capture: true });
-    window.addEventListener("keydown", onKey, true);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("wheel", onWheel, { capture: true });
-      window.removeEventListener("keydown", onKey, true);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [n, go]);
 
   const onPointerDown = (e: React.PointerEvent) => {
     if (e.button !== 0 || n < 1) return;
@@ -307,12 +253,6 @@ export default function JournalSpreads({ spreads, height = "clamp(440px,64vh,680
       aria-roledescription="carousel"
       aria-label={label}
       onKeyDown={onKeyDown}
-      onMouseEnter={() => {
-        hovered.current = true;
-      }}
-      onMouseLeave={() => {
-        hovered.current = false;
-      }}
     >
       <div ref={stageRef} className="jsc-stage" data-drag={dragging ? "" : undefined} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp}>
         <div className="jsc-view">

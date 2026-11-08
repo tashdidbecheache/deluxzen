@@ -5,7 +5,7 @@ import { useEffect } from "react";
 /**
  * Page-level motion from the design:
  *  - each section's content rises in when the section arrives on screen (and resets when it leaves)
- *  - desktop with a mouse/trackpad: one wheel gesture or PageUp/PageDown = one screen
+ *  (scrolling itself is handled by SmoothScroll)
  */
 type Sec = HTMLElement & { _pgT?: HTMLElement[]; _pgShown?: boolean };
 type Tgt = HTMLElement & { _pgTm?: number; _pgTr?: string };
@@ -83,88 +83,7 @@ export default function PageEffects() {
     );
     list0.forEach((sec) => io.observe(sec));
 
-    // One gesture = one screen (desktop, fine pointer).
-    const mq = window.matchMedia("(min-width: 881px) and (pointer: fine)");
-    const easeIO = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-    let lock = false, lastWheel = 0, raf = 0, rel = 0;
-    const animTo = (top: number, done: () => void) => {
-      cancelAnimationFrame(raf);
-      const y0 = window.scrollY, dy = top - y0, t0 = performance.now(), dur = reduced ? 1 : 900;
-      const step = (now: number) => {
-        const p = Math.min(1, (now - t0) / dur);
-        window.scrollTo({ top: y0 + dy * easeIO(p), behavior: "instant" as ScrollBehavior });
-        if (p < 1) raf = requestAnimationFrame(step);
-        else done();
-      };
-      raf = requestAnimationFrame(step);
-    };
-    const go = (dir: number) => {
-      const list = secs(), vh = window.innerHeight, y = window.scrollY;
-      let cur = 0;
-      list.forEach((x, i) => {
-        if (x.getBoundingClientRect().top <= vh * 0.45) cur = i;
-      });
-      const r = list[cur].getBoundingClientRect();
-      if (dir > 0 && r.bottom > vh + 4) return "native";
-      if (dir < 0 && r.top < -4) return "native";
-      const nx = Math.max(0, Math.min(list.length - 1, cur + dir));
-      if (nx === cur) return dir > 0 ? "native" : "stop";
-      const tr = list[nx].getBoundingClientRect();
-      let top = tr.top + y;
-      if (dir < 0 && tr.height > vh + 4) top += tr.height - vh;
-      lock = true;
-      animTo(top, () => {
-        const release = () => {
-          if (performance.now() - lastWheel > 220) lock = false;
-          else rel = window.setTimeout(release, 80);
-        };
-        rel = window.setTimeout(release, 120);
-      });
-      return "paged";
-    };
-    const scrollableUp = (el: Element | null, down: boolean) => {
-      while (el && el !== document.body && el !== document.documentElement) {
-        const h = el as HTMLElement;
-        if (h.scrollHeight > h.clientHeight + 2) {
-          const oy = getComputedStyle(h).overflowY;
-          if ((oy === "auto" || oy === "scroll") && (down ? h.scrollTop + h.clientHeight < h.scrollHeight - 1 : h.scrollTop > 0)) return true;
-        }
-        el = el.parentElement;
-      }
-      return false;
-    };
-    const onWheel = (ev: WheelEvent) => {
-      if (!mq.matches || ev.defaultPrevented || ev.ctrlKey || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
-      lastWheel = performance.now();
-      if (lock) {
-        ev.preventDefault();
-        return;
-      }
-      if (Math.abs(ev.deltaY) < 3 || scrollableUp(ev.target as Element, ev.deltaY > 0)) return;
-      if (go(ev.deltaY > 0 ? 1 : -1) !== "native") ev.preventDefault();
-    };
-    const onKey = (ev: KeyboardEvent) => {
-      if (!mq.matches || ev.defaultPrevented || ev.altKey || ev.ctrlKey || ev.metaKey) return;
-      const t = ev.target as HTMLElement | null;
-      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable)) return;
-      const down = ev.key === "PageDown" || ev.key === "ArrowDown" || (ev.key === " " && !ev.shiftKey);
-      const up = ev.key === "PageUp" || ev.key === "ArrowUp" || (ev.key === " " && ev.shiftKey);
-      if (!down && !up) return;
-      if (lock) {
-        ev.preventDefault();
-        return;
-      }
-      if (go(down ? 1 : -1) !== "native") ev.preventDefault();
-    };
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("keydown", onKey);
-      io.disconnect();
-      cancelAnimationFrame(raf);
-      clearTimeout(rel);
-    };
+    return () => io.disconnect();
   }, []);
 
   return null;

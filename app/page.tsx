@@ -1,4 +1,5 @@
 import PageEffects from "@/components/PageEffects";
+import SmoothScroll from "@/components/SmoothScroll";
 import BeforeAfterSection from "@/components/sections/BeforeAfterSection";
 import Closing from "@/components/sections/Closing";
 import Contact from "@/components/sections/Contact";
@@ -38,6 +39,7 @@ export default function Home() {
       </main>
       <Overlays />
       <PageEffects />
+      <SmoothScroll />
     </>
   );
 }
