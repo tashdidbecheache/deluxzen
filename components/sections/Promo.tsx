@@ -154,7 +154,7 @@ export default function Promo() {
             muted
             playsInline
             preload="metadata"
-            className="absolute inset-0 block size-full object-cover"
+            className="absolute inset-0 block size-full object-cover portrait:object-contain"
           />
         </div>
         <button
