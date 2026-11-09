@@ -44,7 +44,7 @@ export default function Closing() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,160px),1fr))] gap-x-8 gap-y-10">
           <div className="col-span-2 flex min-w-[min(100%,280px)] flex-col gap-4">
             <span className="max-w-[36ch] text-base leading-[1.55] text-[#D9D9D9]">
-              Deluxen designs and builds premium websites for businesses of every kind, in the UK, the USA, Canada and Sweden.
+              Deluxzen designs and builds premium websites for businesses of every kind, in the UK, the USA, Canada and Sweden.
             </span>
             <a href={`mailto:${EMAIL}`} className="w-fit border-b border-brand pb-0.5 text-[15px] text-white hover:text-brand">
               {EMAIL}
@@ -70,13 +70,13 @@ export default function Closing() {
         </div>
         <div
           aria-hidden
-          className="mb-[-0.06em] text-center font-display text-[clamp(80px,19vw,270px)] leading-[.8] font-semibold tracking-[-0.06em] whitespace-nowrap select-none"
+          className="mb-[-0.06em] text-center font-display text-[clamp(64px,17.5vw,270px)] leading-[.8] font-semibold tracking-[-0.06em] whitespace-nowrap select-none"
           style={{ background: "linear-gradient(180deg,#2A2A2A 0%,#0A0A0A 95%)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", WebkitTextFillColor: "transparent" }}
         >
-          DELUXEN
+          DELUXZEN
         </div>
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-3 border-t border-[#2A2A2A] pt-5 text-xs text-[#8A8A8A]">
-          <span>© 2026 Deluxen. All rights reserved. A brand of Sitexzen Ltd, registered in England &amp; Wales, Company No. 16554216.</span>
+          <span>© 2026 Deluxzen. All rights reserved. A brand of Sitexzen Ltd, registered in England &amp; Wales, Company No. 16554216.</span>
           <span className="flex gap-5">
             <a href="#" className="text-[#8A8A8A] hover:text-white">
               Privacy Policy

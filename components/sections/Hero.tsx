@@ -4,11 +4,11 @@ import { Shimmer, WordBand } from "@/components/ui";
 import { HERO_ASCII, INDUSTRY_STRIP, WHATSAPP_URL } from "@/lib/data";
 
 const clients = [
-  { src: "/assets/avatar-ahmed.jpg", alt: "Ahmed Saikat, Deluxen client" },
-  { src: "/assets/avatar-sifat.jpg", alt: "Sifat, Deluxen client" },
-  { src: "/assets/avatar-mujtahid.jpg", alt: "Muztahid Rahman, Deluxen client" },
-  { src: "/assets/avatar-sanjim.jpg", alt: "Sanjim Khan, Deluxen client" },
-  { src: "/assets/avatar-afridi.jpg", alt: "Kazi Afridi, Deluxen client" },
+  { src: "/assets/avatar-ahmed.jpg", alt: "Ahmed Saikat, Deluxzen client" },
+  { src: "/assets/avatar-sifat.jpg", alt: "Sifat, Deluxzen client" },
+  { src: "/assets/avatar-mujtahid.jpg", alt: "Muztahid Rahman, Deluxzen client" },
+  { src: "/assets/avatar-sanjim.jpg", alt: "Sanjim Khan, Deluxzen client" },
+  { src: "/assets/avatar-afridi.jpg", alt: "Kazi Afridi, Deluxzen client" },
 ];
 
 export default function Hero() {

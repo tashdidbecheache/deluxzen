@@ -43,7 +43,7 @@ export default function Included() {
     <section ref={ref} id="included" className="mx-auto box-border flex min-h-screen w-full max-w-[1280px] flex-col justify-center gap-7 px-6 pt-24 pb-8">
       <div data-dx-head className="flex flex-wrap items-end justify-between gap-6">
         <h2 className="m-0 font-display text-[clamp(32px,3.9vw,56px)] leading-[1.1] font-medium tracking-[-0.045em] text-balance">
-          Every <span className="text-brand">Deluxen</span> website comes with:
+          Every <span className="text-brand">Deluxzen</span> website comes with:
         </h2>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-x-8 border-t border-line">

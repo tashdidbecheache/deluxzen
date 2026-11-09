@@ -1,5 +1,5 @@
 export const WHATSAPP_URL =
-  "https://wa.me/8801316986654?text=Hi%20Deluxen%2C%20I%20want%20a%20website%20for%20my%20business.";
+  "https://wa.me/8801316986654?text=Hi%20Deluxzen%2C%20I%20want%20a%20website%20for%20my%20business.";
 export const PHONE_TEL = "tel:+8801316986654";
 export const PHONE_LABEL = "+880 1316 986654";
 export const EMAIL = "hello@deluxen.studio";
@@ -151,7 +151,7 @@ export const PACKAGES = [
   },
 ] as const;
 
-const tmClients = ["Happy clients from Deluxen", "Magnolia Properties", "Sitexzen One", "Appbaksho", "Bot Engineers", "Visyouals"];
+const tmClients = ["Happy clients from Deluxzen", "Magnolia Properties", "Sitexzen One", "Appbaksho", "Bot Engineers", "Visyouals"];
 export const TM_STRIP = repeat(tmClients, 4);
 
 export type Testimonial = {
@@ -172,7 +172,7 @@ export type Testimonial = {
 const tmOne: Testimonial[] = [
   { name: "Ahmed Saikat", role: "Magnolia Properties", avatar: "/assets/avatar-ahmed.jpg", logo: "Magnolia", logoImg: "/assets/logo-magnolia.png", logoH: "78px", quote: "Our listings finally look as good as the properties. Buyers land on the site, browse the projects and call us already knowing what they want." },
   { name: "Sifat", role: "Sitexzen One", avatar: "/assets/avatar-sifat.jpg", logo: "Sitexzen", logoImg: "/assets/logo-sitexzen.svg", logoH: "44px", quote: "They took our rough idea and turned it into a clean, fast site in days. Every change we asked for was handled quickly and without fuss." },
-  { name: "Muztahid Rahman", role: "Appbaksho", avatar: "/assets/avatar-mujtahid.jpg", logo: "appbaksho", logoImg: "/assets/logo-appbaksho.svg", logoH: "68px", quote: "Deluxen builds every Appbaksho client site now. The pages load fast, read clearly on phones and are easy for clients to update themselves." },
+  { name: "Muztahid Rahman", role: "Appbaksho", avatar: "/assets/avatar-mujtahid.jpg", logo: "appbaksho", logoImg: "/assets/logo-appbaksho.svg", logoH: "68px", quote: "Deluxzen builds every Appbaksho client site now. The pages load fast, read clearly on phones and are easy for clients to update themselves." },
   { name: "Sanjim Khan", role: "Bot Engineers", avatar: "/assets/avatar-sanjim.jpg", logo: "BOT Engineers", logoImg: "/assets/logo-botengineers.png", logoH: "66px", quote: "Our store has hundreds of components, and customers can find any part in seconds. Orders from the website have become our main channel." },
   { name: "Kazi Sharfaraz Afridi", role: "Visual storyteller, Sweden", avatar: "/assets/avatar-afridi.jpg", logo: "VISYOUALS", logoFont: "var(--font-bebas), sans-serif", logoWeight: 400, logoSize: "34px", logoTrack: ".01em", logoCase: "uppercase", quote: "My portfolio finally feels like my work: quiet, cinematic and fast. Clients in Sweden comment on the site before they mention the photos." },
 ];
@@ -181,7 +181,7 @@ export const TM_ITEMS = [...tmOne, ...tmOne].map((t, i) => ({ ...t, dir: (i % 2 
 export const FAQS = [
   { q: "How much does a portfolio website cost?", a: "It depends on the number of pages and features. Our packages start from $100. Send us a message and you'll get a fixed quote within 24 hours. No hidden costs." },
   { q: "What is a portfolio website, and who needs one?", a: "A portfolio website shows your best work, explains what you do and makes it easy for the right people to contact you. Businesses, studios, creators, consultants and professionals use one to win clients, investors and jobs." },
-  { q: "Will my portfolio website show up on Google?", a: "Every Deluxen website comes with professional SEO setup: page titles, descriptions, a sitemap, fast loading and mobile-first design, so Google can find and understand it. Rankings also depend on your content and competition, so we never promise a position." },
+  { q: "Will my portfolio website show up on Google?", a: "Every Deluxzen website comes with professional SEO setup: page titles, descriptions, a sitemap, fast loading and mobile-first design, so Google can find and understand it. Rankings also depend on your content and competition, so we never promise a position." },
   { q: "How long does it take?", a: "Between 1 and 3 weeks, depending on the package and how quickly we receive your content." },
   { q: "Do I need to provide the content and photos?", a: "Share what you have. We help write the text and can arrange photography or suitable images." },
   { q: "Who owns the website?", a: "You do. The domain, website and content are all in your name." },
@@ -189,14 +189,14 @@ export const FAQS = [
   { q: "Will my website work on mobile phones?", a: "Yes. Every website is designed for mobile first, because most of your visitors will arrive on a phone." },
   { q: "Do you work with clients outside Bangladesh?", a: "Yes. We work with businesses in the UK, the USA, Canada and Sweden, and schedule calls in your timezone." },
   { q: "What happens after launch?", a: "You get 30 days of free support. After that, you can choose a monthly care plan for updates, security and SEO." },
-  { q: "Who is behind Deluxen?", a: "Deluxen is a brand of Sitexzen Ltd, registered in England & Wales (Company No. 16554216). Our design studio is in Dhaka, and the same senior team handles every build." },
+  { q: "Who is behind Deluxzen?", a: "Deluxzen is a brand of Sitexzen Ltd, registered in England & Wales (Company No. 16554216). Our design studio is in Dhaka, and the same senior team handles every build." },
 ];
 
 export const HERO_ASCII = { renderMode: "dither", bgMode: "none", mono: "#F81048", cellSize: 9, contrast: 158, density: 20, animated: true, animStyle: "pulse" };
 export const CTA_ASCII = { ...HERO_ASCII, mono: "#0A0305" };
 
 export const JSON_LD = [
-  { "@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://deluxen.studio/#agency", name: "Deluxen", description: "Portfolio website design agency. Custom, fast portfolio websites for businesses, creators and professionals.", url: "https://deluxen.studio/", email: "hello@deluxen.studio", telephone: "+8801316986654", priceRange: "$100 - $1,000", areaServed: ["United Kingdom", "United States", "Canada", "Sweden"], parentOrganization: { "@type": "Organization", name: "Sitexzen Ltd", identifier: "16554216" }, knowsAbout: ["Portfolio website design", "Web design", "Web development", "Search engine optimisation"], hasOfferCatalog: { "@type": "OfferCatalog", name: "Portfolio website packages", itemListElement: PACKAGES.map((p) => ({ "@type": "Offer", name: p.name, price: p.price.replace(/[$,]/g, ""), priceCurrency: "USD", itemOffered: { "@type": "Service", name: p.name + " portfolio website" } })) } },
-  { "@context": "https://schema.org", "@type": "WebSite", "@id": "https://deluxen.studio/#website", name: "Deluxen", url: "https://deluxen.studio/", publisher: { "@id": "https://deluxen.studio/#agency" } },
+  { "@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://deluxen.studio/#agency", name: "Deluxzen", description: "Portfolio website design agency. Custom, fast portfolio websites for businesses, creators and professionals.", url: "https://deluxen.studio/", email: "hello@deluxen.studio", telephone: "+8801316986654", priceRange: "$100 - $1,000", areaServed: ["United Kingdom", "United States", "Canada", "Sweden"], parentOrganization: { "@type": "Organization", name: "Sitexzen Ltd", identifier: "16554216" }, knowsAbout: ["Portfolio website design", "Web design", "Web development", "Search engine optimisation"], hasOfferCatalog: { "@type": "OfferCatalog", name: "Portfolio website packages", itemListElement: PACKAGES.map((p) => ({ "@type": "Offer", name: p.name, price: p.price.replace(/[$,]/g, ""), priceCurrency: "USD", itemOffered: { "@type": "Service", name: p.name + " portfolio website" } })) } },
+  { "@context": "https://schema.org", "@type": "WebSite", "@id": "https://deluxen.studio/#website", name: "Deluxzen", url: "https://deluxen.studio/", publisher: { "@id": "https://deluxen.studio/#agency" } },
   { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQS.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
 ];

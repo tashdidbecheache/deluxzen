@@ -106,7 +106,7 @@ export default function Header() {
       className="fixed inset-x-0 top-0 z-20 box-border flex flex-wrap items-center justify-between gap-4 border-b border-[rgba(248,16,72,.18)] bg-[rgba(10,3,5,.82)] px-6 py-4 backdrop-blur-[14px]"
     >
       <a href="#" className="font-display text-xl font-semibold tracking-[-0.03em] text-white">
-        DELUXEN
+        DELUXZEN
       </a>
 
       <div data-dx-desktopnav className="flex justify-center">

@@ -9,11 +9,11 @@ const bebas = Bebas_Neue({ variable: "--font-bebas", subsets: ["latin"], weight:
 const pixelify = Pixelify_Sans({ variable: "--font-pixel", subsets: ["latin"], weight: ["400", "600"] });
 
 const description =
-  "Deluxen is a portfolio website design agency. We design and build fast, custom portfolio websites for businesses, creators and professionals in the UK, USA, Canada and Sweden. Packages from $100.";
+  "Deluxzen is a portfolio website design agency. We design and build fast, custom portfolio websites for businesses, creators and professionals in the UK, USA, Canada and Sweden. Packages from $100.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deluxen.studio"),
-  title: "Deluxen | Portfolio Website Design Agency for Brands & Professionals",
+  title: "Deluxzen | Portfolio Website Design Agency for Brands & Professionals",
   description,
   keywords: [
     "portfolio website design",
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, "max-image-preview": "large" },
   openGraph: {
     type: "website",
-    siteName: "Deluxen",
-    title: "Deluxen | Portfolio Website Design Agency",
+    siteName: "Deluxzen",
+    title: "Deluxzen | Portfolio Website Design Agency",
     description: "Custom, fast portfolio websites for businesses, creators and professionals. Designed with intent, never a template. Packages from $100.",
     url: "/",
     images: ["/assets/video/deluxen-promo-poster.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Deluxen | Portfolio Website Design Agency",
+    title: "Deluxzen | Portfolio Website Design Agency",
     description: "Custom, fast portfolio websites for businesses, creators and professionals. Packages from $100.",
   },
 };
