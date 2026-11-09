@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Deluxzen | Portfolio Website Design Agency",
     description: "Custom, fast portfolio websites for businesses, creators and professionals. Designed with intent, never a template. Packages from $100.",
     url: "/",
-    images: ["/assets/video/deluxen-promo-poster.jpg"],
+    images: ["/assets/video/deluxzen-promo-poster.jpg"],
   },
   twitter: {
     card: "summary_large_image",

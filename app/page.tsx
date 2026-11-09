@@ -10,6 +10,7 @@ import Included from "@/components/sections/Included";
 import Industries from "@/components/sections/Industries";
 import Overlays from "@/components/sections/Overlays";
 import Packages from "@/components/sections/Packages";
+import Promo from "@/components/sections/Promo";
 import Reach from "@/components/sections/Reach";
 import Services from "@/components/sections/Services";
 import Stack from "@/components/sections/Stack";
@@ -27,6 +28,7 @@ export default function Home() {
         <Reach />
         <Work />
         <BeforeAfterSection />
+        <Promo />
         <Industries />
         <Services />
         <Included />
